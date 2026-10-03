@@ -1,800 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <title>Eliza Art Corner | Original Paintings</title>
 
-  <title>Eliza Art Corner — Original Paintings</title>
+    <meta
+        name="description"
+        content="Eliza Art Corner — original paintings created with warmth, feeling and quiet moments in mind."
+    >
 
-  <meta
-    name="description"
-    content="Eliza Art Corner — original paintings created with warmth, atmosphere and a love for quiet moments."
-  >
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap"
+        rel="stylesheet"
+    >
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&family=Playfair+Display:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Google Analytics
-       Replace G-XXXXXXXXXX with Eliza's GA4 measurement ID later.
-       Leave blank for now if she does not have one.
-  -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag("js", new Date());
-
-    gtag("config", "G-XXXXXXXXXX");
-  </script>
-
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
+    <!-- ================= HEADER ================= -->
 
-  <header class="site-header">
+    <header class="site-header" id="top">
 
-    <div class="header-inner">
+        <div class="header-inner">
 
-      <a href="#home" class="logo" data-page="home">
-
-        <span class="logo-main">
-          Eliza
-        </span>
-
-        <span class="logo-sub">
-          Art Corner
-        </span>
-
-      </a>
-
-
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="Open navigation"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span></span>
-        <span></span>
-      </button>
-
-
-      <nav class="desktop-nav" aria-label="Main navigation">
-
-        <a href="#home" data-page="home">
-          Home
-        </a>
-
-        <a href="#about" data-page="about">
-          About
-        </a>
-
-        <a href="#contact" data-page="contact">
-          Contact
-        </a>
-
-      </nav>
-
-    </div>
-
-
-    <nav
-      class="mobile-menu"
-      id="mobile-menu"
-      aria-label="Mobile navigation"
-    >
-
-      <a href="#home" data-page="home">
-        Home
-      </a>
-
-      <a href="#about" data-page="about">
-        About
-      </a>
-
-      <a href="#contact" data-page="contact">
-        Contact
-      </a>
-
-    </nav>
-
-  </header>
-
-
-
-  <!-- =====================================================
-       HOME
-       ===================================================== -->
-
-  <main>
-
-    <section
-      id="page-home"
-      class="site-page"
-    >
-
-
-      <!-- ================= HERO ================= -->
-
-      <div class="hero">
-
-        <div class="hero-copy">
-
-          <p class="eyebrow">
-            Original Paintings · Eliza Art Corner
-          </p>
-
-          <h1>
-            Paintings for
-            <em>quiet moments.</em>
-          </h1>
-
-          <p class="hero-description">
-            Original paintings created with warmth, atmosphere
-            and a love for the little moments that make life
-            feel special.
-          </p>
-
-
-          <div class="hero-actions">
-
-            <a
-              href="#gallery"
-              class="button button-primary"
-              data-scroll-gallery
-            >
-              Explore Paintings
+            <a href="#home" class="brand">
+                <span class="brand-main">Eliza Art Corner</span>
+                <span class="brand-sub">Original Paintings</span>
             </a>
 
-            <a
-              href="#about"
-              class="text-link"
-              data-page="about"
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open menu"
+                aria-expanded="false"
             >
-              About the Artist
-              <span>→</span>
-            </a>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-          </div>
+            <nav class="site-nav" id="siteNav">
+
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#paintings">Paintings</a>
+                <a href="#commissions">Commissions</a>
+                <a href="#contact">Contact</a>
+
+            </nav>
 
         </div>
 
+    </header>
 
-        <div class="hero-art">
 
-          <div class="hero-frame">
+    <main>
 
-            <img
-              src="hero.jpg"
-              alt="Featured painting by Eliza"
-              id="hero-image"
-            >
+        <!-- ================= HERO ================= -->
 
-            <div
-              class="image-placeholder"
-              id="hero-placeholder"
-            >
-              <span>
-                Featured Work
-              </span>
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">ELIZA ART CORNER</p>
+
+                <h1>
+                    Paintings made for
+                    <em>quiet moments.</em>
+                </h1>
+
+                <p class="hero-text">
+                    Original paintings created with warmth, emotion and
+                    a love for the little moments that stay with us.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#paintings" class="button button-primary">
+                        View Paintings
+                    </a>
+
+                    <a href="#about" class="button button-secondary">
+                        Meet the Artist
+                    </a>
+
+                </div>
+
             </div>
 
-          </div>
 
+            <div class="hero-art">
 
-          <div class="hero-note">
+                <div class="hero-frame">
 
-            <span class="hero-note-line"></span>
+                    <!--
+                        HERO IMAGE
 
-            <span>
-              Original artwork
-            </span>
+                        Upload your hero image directly into the repository
+                        and name it:
 
-          </div>
+                        hero.jpg
 
-        </div>
+                        You can change the filename below if needed.
+                    -->
 
-      </div>
+                    <img
+                        src="hero.jpg"
+                        alt="Eliza Art Corner artwork"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('image-placeholder');"
+                    >
 
+                    <div class="hero-caption">
+                        <span>Original artwork</span>
+                        <span>Eliza Art Corner</span>
+                    </div>
 
+                </div>
 
-      <!-- ================= INTRO ================= -->
+            </div>
 
-      <div class="intro-section">
+        </section>
 
-        <div class="section-label">
 
-          <span>01</span>
+        <!-- ================= INTRO ================= -->
 
-          <span>
-            The Collection
-          </span>
+        <section class="intro-section">
 
-        </div>
+            <div class="section-label">
+                <span>01</span>
+                <span>THE ART</span>
+            </div>
 
+            <div class="intro-content">
 
-        <div class="intro-grid">
+                <p class="intro-large">
+                    Art doesn't always have to be loud.
+                    Sometimes a painting simply holds a feeling.
+                </p>
 
-          <h2>
-            Art that feels
-            <em>like home.</em>
-          </h2>
+                <p class="intro-small">
+                    Each piece at Eliza Art Corner is created slowly and
+                    thoughtfully, with an emphasis on atmosphere, emotion
+                    and the beauty of everyday moments.
+                </p>
 
+            </div>
 
-          <p>
-            Each painting is created slowly and thoughtfully,
-            inspired by places, memories and the small details
-            that make ordinary moments feel special.
-          </p>
+        </section>
 
-        </div>
 
-      </div>
+        <!-- ================= ABOUT ================= -->
 
+        <section class="about-section section" id="about">
 
+            <div class="section-label">
+                <span>02</span>
+                <span>ABOUT THE ARTIST</span>
+            </div>
 
-      <!-- ================= GALLERY ================= -->
+            <div class="about-grid">
 
-      <div
-        class="gallery-section"
-        id="gallery"
-      >
+                <div class="about-image-wrap">
 
-        <div class="section-heading">
+                    <!--
+                        ABOUT IMAGE
 
-          <div>
+                        Upload the picture directly into the repository
+                        and name it:
 
-            <p class="eyebrow">
-              Available works
-            </p>
+                        about.jpg
+                    -->
 
-            <h2>
-              Recent
-              <em>Paintings</em>
-            </h2>
+                    <img
+                        src="about.jpg"
+                        alt="Eliza, artist behind Eliza Art Corner"
+                        class="about-image"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('image-placeholder');"
+                    >
 
-          </div>
+                </div>
 
 
-          <p class="heading-note">
-            Original works painted by hand.
-          </p>
+                <div class="about-content">
 
-        </div>
+                    <p class="script-accent">A little about me</p>
 
+                    <h2>
+                        Creating paintings
+                        with heart.
+                    </h2>
 
-        <!-- JavaScript inserts paintings here -->
+                    <p>
+                        Welcome to Eliza Art Corner. This is a space where
+                        I share my original paintings and the moments,
+                        feelings and stories that inspire them.
+                    </p>
 
-        <div
-          class="painting-grid"
-          id="painting-grid"
-        ></div>
+                    <p>
+                        My work explores beauty in ordinary scenes and
+                        the emotions we often associate with places,
+                        memories and quiet moments.
+                    </p>
 
-      </div>
+                    <p>
+                        Thank you for taking the time to visit my little
+                        corner of the art world.
+                    </p>
 
+                    <a href="#paintings" class="text-link">
+                        Explore the paintings
+                        <span>→</span>
+                    </a>
 
+                </div>
 
-      <!-- ================= COMMISSIONS ================= -->
+            </div>
 
-      <section class="commission-section">
+        </section>
 
-        <div class="commission-inner">
 
-          <div class="commission-number">
-            02
-          </div>
+        <!-- ================= PAINTINGS ================= -->
 
+        <section class="paintings-section section" id="paintings">
 
-          <div class="commission-copy">
+            <div class="section-heading">
 
-            <p class="eyebrow">
-              Something personal?
-            </p>
+                <div>
+                    <div class="section-label">
+                        <span>03</span>
+                        <span>ORIGINAL PAINTINGS</span>
+                    </div>
 
-            <h2>
-              Have a painting
-              <em>in mind?</em>
-            </h2>
+                    <h2>Recent work</h2>
+                </div>
 
-            <p>
-              Eliza accepts a limited number of commission
-              requests for personal spaces, gifts and
-              meaningful moments.
-            </p>
+                <p>
+                    Browse the available original paintings below.
+                    Select any piece to see more details.
+                </p>
 
-          </div>
+            </div>
 
 
-          <a
-            href="#contact"
-            class="button button-light"
-            data-page="contact"
-          >
-            Enquire About a Commission
-            <span>→</span>
-          </a>
+            <!-- Paintings are automatically inserted here by script.js -->
 
-        </div>
+            <div class="paintings-grid" id="paintingsGrid"></div>
 
-      </section>
+        </section>
 
 
-      <!-- ================= NEWSLETTER ================= -->
+        <!-- ================= COMMISSIONS ================= -->
 
-      <section class="newsletter-section">
+        <section class="commission-section section" id="commissions">
 
-        <div class="newsletter-inner">
+            <div class="commission-intro">
 
-          <p class="eyebrow">
-            Stay in the corner
-          </p>
+                <div class="section-label">
+                    <span>04</span>
+                    <span>COMMISSIONS</span>
+                </div>
 
-          <h2>
-            New paintings,
-            <em>first look.</em>
-          </h2>
+                <p class="script-accent">Something personal?</p>
 
-          <p>
-            Join the mailing list to hear about new original
-            paintings before they are shared elsewhere.
-          </p>
+                <h2>
+                    Let's create
+                    something just for you.
+                </h2>
 
+                <p>
+                    If there is a particular scene, memory, person or
+                    idea you'd love to see turned into a painting,
+                    commissions are available.
+                </p>
 
-          <!-- Replace this link with Eliza's mailing list -->
+                <a href="#contact" class="button button-primary">
+                    Ask About a Commission
+                </a>
 
-          <a
-            href="YOUR_BEEHIIV_LINK_HERE"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button button-primary"
-            id="newsletter-link"
-          >
-            Join the Mailing List
-          </a>
+            </div>
 
-        </div>
 
-      </section>
+            <div class="commission-steps">
 
-    </section>
+                <div class="commission-step">
 
+                    <span>01</span>
 
+                    <h3>Share your idea</h3>
 
-    <!-- =====================================================
-         ABOUT
-         ===================================================== -->
+                    <p>
+                        Tell me what you have in mind and send any
+                        reference photographs or inspiration.
+                    </p>
 
-    <section
-      id="page-about"
-      class="site-page"
-      hidden
-    >
+                </div>
 
-      <div class="inner-page">
 
-        <div class="section-label">
+                <div class="commission-step">
 
-          <span>03</span>
+                    <span>02</span>
 
-          <span>
-            The Artist
-          </span>
+                    <h3>Discuss the details</h3>
 
-        </div>
+                    <p>
+                        We'll discuss the size, colours, composition
+                        and other details of your painting.
+                    </p>
 
+                </div>
 
-        <div class="about-grid">
 
-          <div class="about-image">
+                <div class="commission-step">
 
-            <img
-              src="about.jpg"
-              alt="Eliza, artist at Eliza Art Corner"
-              id="about-image"
-            >
+                    <span>03</span>
 
-            <div
-              class="image-placeholder"
-              id="about-placeholder"
-            >
-              <span>
+                    <h3>Your painting begins</h3>
+
+                    <p>
+                        Once everything is confirmed, I'll begin creating
+                        your original artwork.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEWSLETTER ================= -->
+
+        <section class="newsletter-section">
+
+            <div class="newsletter-inner">
+
+                <p class="script-accent">Stay close</p>
+
+                <h2>
+                    New paintings,
+                    first look.
+                </h2>
+
+                <p>
+                    Join the mailing list to hear about new paintings
+                    and available artwork before everyone else.
+                </p>
+
+                <!--
+                    BEEHIIV
+
+                    Replace the # below with the Beehiiv signup link
+                    once Eliza's account is ready.
+
+                    Example:
+                    https://something.beehiiv.com/subscribe
+                -->
+
+                <a
+                    href="#"
+                    class="button button-light"
+                    id="newsletterButton"
+                >
+                    Join the Mailing List
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT ================= -->
+
+        <section class="contact-section section" id="contact">
+
+            <div class="section-label">
+                <span>05</span>
+                <span>GET IN TOUCH</span>
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div>
+
+                    <p class="script-accent">Let's talk</p>
+
+                    <h2>
+                        Have a painting
+                        in mind?
+                    </h2>
+
+                    <p>
+                        For painting enquiries, purchases and commissions,
+                        feel free to get in touch.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-details">
+
+                    <!--
+                        Replace the email address below with Eliza's email.
+                    -->
+
+                    <a
+                        href="mailto:"
+                        class="contact-item"
+                        id="emailLink"
+                    >
+                        <span>Email</span>
+                        <strong id="emailText">Your email here</strong>
+                    </a>
+
+
+                    <!--
+                        Replace the Instagram link in script.js.
+                    -->
+
+                    <a
+                        href="#"
+                        class="contact-item"
+                        id="instagramLink"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span>Instagram</span>
+                        <strong>@elizaartcorner</strong>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div>
+
+            <p class="footer-brand">
                 Eliza Art Corner
-              </span>
-            </div>
-
-          </div>
-
-
-          <div class="about-copy">
-
-            <p class="eyebrow">
-              A little about me
-            </p>
-
-            <h1>
-              Hello, I'm
-              <em>Eliza.</em>
-            </h1>
-
-            <p>
-              Painting has always been my way of slowing down
-              and paying attention to the world around me.
             </p>
 
             <p>
-              Through Eliza Art Corner, I create original
-              paintings inspired by atmosphere, places,
-              memories and the quiet beauty found in everyday life.
+                Original paintings made with warmth.
             </p>
-
-            <p>
-              I hope each piece brings something warm and personal
-              into the space where it eventually finds a home.
-            </p>
-
-            <div class="signature">
-              Eliza
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         CONTACT
-         ===================================================== -->
-
-    <section
-      id="page-contact"
-      class="site-page"
-      hidden
-    >
-
-      <div class="inner-page">
-
-        <div class="section-label">
-
-          <span>04</span>
-
-          <span>
-            Get In Touch
-          </span>
 
         </div>
 
 
-        <div class="contact-grid">
+        <div class="footer-right">
 
-          <div class="contact-heading">
-
-            <p class="eyebrow">
-              Contact
-            </p>
-
-            <h1>
-              Let's talk
-              <em>about art.</em>
-            </h1>
+            <a href="#top">Back to top ↑</a>
 
             <p>
-              Interested in an original painting, a commission,
-              or simply want to say hello?
+                © <span id="currentYear"></span>
+                Eliza Art Corner
             </p>
-
-          </div>
-
-
-          <div class="contact-links">
-
-            <!-- Replace these links/details -->
-
-            <a
-              href="mailto:YOUR_EMAIL_HERE"
-              class="contact-card"
-              data-contact="Email"
-            >
-
-              <span class="contact-label">
-                Email
-              </span>
-
-              <span class="contact-value">
-                YOUR_EMAIL_HERE
-              </span>
-
-              <span class="contact-arrow">
-                ↗
-              </span>
-
-            </a>
-
-
-            <a
-              href="https://instagram.com/YOUR_INSTAGRAM"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-card"
-              data-contact="Instagram"
-            >
-
-              <span class="contact-label">
-                Instagram
-              </span>
-
-              <span class="contact-value">
-                @YOUR_INSTAGRAM
-              </span>
-
-              <span class="contact-arrow">
-                ↗
-              </span>
-
-            </a>
-
-
-            <a
-              href="https://wa.me/YOUR_WHATSAPP_NUMBER"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-card"
-              data-contact="WhatsApp"
-            >
-
-              <span class="contact-label">
-                WhatsApp
-              </span>
-
-              <span class="contact-value">
-                Message me
-              </span>
-
-              <span class="contact-arrow">
-                ↗
-              </span>
-
-            </a>
-
-          </div>
 
         </div>
 
-      </div>
-
-    </section>
-
-  </main>
+    </footer>
 
 
-
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
-  <footer class="site-footer">
-
-    <div class="footer-inner">
-
-      <div class="footer-top">
-
-        <a
-          href="#home"
-          class="logo footer-logo"
-          data-page="home"
-        >
-
-          <span class="logo-main">
-            Eliza
-          </span>
-
-          <span class="logo-sub">
-            Art Corner
-          </span>
-
-        </a>
-
-
-        <p>
-          Original paintings, made with care.
-        </p>
-
-
-        <a
-          href="#home"
-          class="back-top"
-          data-page="home"
-        >
-          Back to top ↑
-        </a>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <span>
-          © <span id="current-year"></span>
-          Eliza Art Corner
-        </span>
-
-        <span>
-          Made with love for art.
-        </span>
-
-      </div>
-
-    </div>
-
-  </footer>
-
-
-
-  <!-- =====================================================
-       PAINTING MODAL
-       ===================================================== -->
-
-  <div
-    class="painting-modal"
-    id="painting-modal"
-    aria-hidden="true"
-  >
-
-    <div class="modal-backdrop"></div>
-
+    <!-- ================= PAINTING MODAL ================= -->
 
     <div
-      class="modal-box"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
+        class="painting-modal"
+        id="paintingModal"
+        aria-hidden="true"
     >
 
-      <button
-        type="button"
-        class="modal-close"
-        id="modal-close"
-        aria-label="Close painting"
-      >
-        ×
-      </button>
+        <div class="modal-overlay" id="modalOverlay"></div>
 
-
-      <div class="modal-image-area">
-
-        <img
-          src=""
-          alt=""
-          id="modal-image"
+        <div
+            class="modal-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
         >
 
-      </div>
+            <button
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close painting"
+            >
+                ×
+            </button>
 
 
-      <div class="modal-details">
+            <div class="modal-image-wrap">
 
-        <p
-          class="modal-category"
-          id="modal-category"
-        >
-          ORIGINAL PAINTING
-        </p>
+                <img
+                    src=""
+                    alt=""
+                    id="modalImage"
+                >
 
-
-        <h2 id="modal-title">
-        </h2>
+            </div>
 
 
-        <p
-          class="modal-description"
-          id="modal-description"
-        >
-        </p>
+            <div class="modal-info">
+
+                <p class="modal-status" id="modalStatus"></p>
+
+                <h2 id="modalTitle"></h2>
+
+                <p
+                    class="modal-description"
+                    id="modalDescription"
+                ></p>
 
 
-        <div class="painting-details">
+                <div class="modal-details">
 
-          <div>
-            <span>Medium</span>
-            <strong id="modal-medium"></strong>
-          </div>
+                    <div>
+                        <span>Size</span>
+                        <strong id="modalSize"></strong>
+                    </div>
 
-          <div>
-            <span>Size</span>
-            <strong id="modal-size"></strong>
-          </div>
+                    <div>
+                        <span>Price</span>
+                        <strong id="modalPrice"></strong>
+                    </div>
 
-          <div>
-            <span>Status</span>
-            <strong id="modal-status"></strong>
-          </div>
+                </div>
 
-          <div>
-            <span>Price</span>
-            <strong id="modal-price"></strong>
-          </div>
+
+                <a
+                    href="#contact"
+                    class="button button-primary modal-contact"
+                    id="modalContact"
+                >
+                    Enquire About This Painting
+                </a>
+
+            </div>
 
         </div>
-
-
-        <p
-          class="modal-contact-heading"
-          id="modal-contact-heading"
-        >
-        </p>
-
-
-        <div class="modal-contact-buttons">
-
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button button-primary"
-            id="modal-whatsapp"
-          >
-            WhatsApp
-          </a>
-
-
-          <a
-            href="#"
-            class="button button-outline"
-            id="modal-email"
-          >
-            Email
-          </a>
-
-
-          <a
-            href="https://instagram.com/YOUR_INSTAGRAM"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button button-outline"
-            id="modal-instagram"
-          >
-            Instagram
-          </a>
-
-        </div>
-
-      </div>
 
     </div>
 
-  </div>
+
+    <!-- ==========================================================
+         PUSHBIRD
+         ==========================================================
+
+         KEEP THIS BLANK FOR NOW.
+
+         When Eliza's Pushbird account is ready, paste the same
+         Pushbird initialization code you use on Ramsha's website
+         into this area.
+
+         Do NOT change anything else on the website.
+
+    =========================================================== -->
+
+    <!-- PUSHBIRD CODE START -->
+
+    <script>
+        /*
+            PUSHBIRD CODE GOES HERE LATER.
+
+            Leave this blank for now.
+        */
+    </script>
+
+    <!-- PUSHBIRD CODE END -->
 
 
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
