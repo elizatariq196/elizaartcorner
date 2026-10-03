@@ -59,98 +59,98 @@ const SITE = {
 const paintings = [
 
     {
-        title: "The Man Out",
+        title: "The Man Outside",
 
-        image: "the-man-out.JPG",
+        image: "the-man-outside.jpg",
+
+        size: "12 × 12 in",
+
+        price: "$120",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+
+    {
+        title: "Long Way Back",
+
+        image: "long-way-back.jpg",
+
+        size: "8 × 8 in",
+
+        price: "$100",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+
+    {
+        title: "A Little Further",
+
+        image: "a-little-further,jpg",
 
         size: "18 × 24 in",
 
-        price: "$450",
+        price: "$420",
 
         status: "Available",
 
         description:
-            "A quiet original painting capturing a solitary moment with a warm and atmospheric mood."
+            ""
     },
 
 
     {
-        title: "Painting Two",
+        title: "The Long Evening",
 
-        image: "painting-02.JPG",
+        image: "the-long-evening.jpg",
 
-        size: "12 × 18 in",
+        size: "18 × 24 in",
+
+        price: "$380",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+
+    {
+        title: "Still Awake",
+
+        image: "still-awake.jpg",
+
+        size: "12 × 12 in",
+
+        price: "$120",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+
+    {
+        title: "The Last Refuge",
+
+        image: "the-last-refuge.jpg",
+
+        size: "18 × 24 in",
 
         price: "$300",
-
-        status: "Available",
-
-        description:
-            "Original acrylic painting. Replace this description with the story or inspiration behind the artwork."
-    },
-
-
-    {
-        title: "Painting Three",
-
-        image: "painting-03.JPG",
-
-        size: "16 × 20 in",
-
-        price: "$400",
-
-        status: "Available",
-
-        description:
-            "Original artwork created with attention to atmosphere, colour and feeling."
-    },
-
-
-    {
-        title: "Painting Four",
-
-        image: "painting-04.JPG",
-
-        size: "10 × 10 in",
-
-        price: "$200",
 
         status: "Sold",
 
         description:
-            "An original painting from the Eliza Art Corner collection."
-    },
-
-
-    {
-        title: "Painting Five",
-
-        image: "painting-05.JPG",
-
-        size: "12 × 18 in",
-
-        price: "$300",
-
-        status: "Available",
-
-        description:
-            "An original painting inspired by quiet moments and familiar places."
-    },
-
-
-    {
-        title: "Painting Six",
-
-        image: "painting-06.JPG",
-
-        size: "18 × 24 in",
-
-        price: "$450",
-
-        status: "Available",
-
-        description:
-            "Original artwork painted by hand."
+            ""
     }
 
 ];
