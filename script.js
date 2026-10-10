@@ -1,3 +1,4 @@
+
 /* ============================================================
    ELIZA ART CORNER
 ============================================================ */
@@ -12,8 +13,6 @@ const SITE = {
 
 /* ============================================================
    PAINTINGS
-   Upload every painting image directly to the main repository.
-   Filenames here must match the uploaded files exactly.
 ============================================================ */
 
 const paintings = [
@@ -252,6 +251,9 @@ function openPainting(index) {
 
     if (!painting || !paintingModal) return;
 
+    // Record the painting viewed in the visitor's journey.
+    trackJourney(`Viewed: ${painting.title}`);
+
     const isSold = painting.status.toLowerCase() === "sold";
 
     modalImage.style.visibility = "visible";
@@ -369,8 +371,7 @@ if (contactWhatsApp) {
 }
 
 /* ============================================================
-   NEWSLETTER
-   Add Eliza's Beehiiv signup URL when available.
+   NEWSLETTER — KIT
 ============================================================ */
 
 const newsletterButton = document.getElementById("newsletterButton");
@@ -389,6 +390,222 @@ if (newsletterButton) {
 }
 
 /* ============================================================
+   PUSHBIRD — VISITOR TRACKING
+============================================================ */
+
+// IMPORTANT: Replace this placeholder with Eliza's own webhook URL.
+const PUSHBIRD_WEBHOOK = "https://pushbird.app/pb_hiqj2w24r58ojri4a9rwwprc";
+
+function sendPushbird(title, message) {
+    if (!PUSHBIRD_WEBHOOK.startsWith("https://")) return;
+    if (PUSHBIRD_WEBHOOK.includes("PASTE_ELIZA")) return;
+
+    const url =
+        PUSHBIRD_WEBHOOK +
+        "?title=" + encodeURIComponent(title) +
+        "&message=" + encodeURIComponent(message);
+
+    const img = new Image();
+    img.src = url;
+}
+
+function trackJourney(action) {
+    let journey = sessionStorage.getItem("visitorJourney") || "Gallery";
+
+    // Avoid repeating the same action consecutively.
+    if (!journey.endsWith(` → ${action}`)) {
+        journey += ` → ${action}`;
+    }
+
+    // Keep the journey from growing indefinitely.
+    const parts = journey.split(" → ");
+
+    if (parts.length > 20) {
+        parts.splice(1, parts.length - 20);
+    }
+
+    journey = parts.join(" → ");
+    sessionStorage.setItem("visitorJourney", journey);
+}
+
+function sendJourneyUpdate() {
+    const journey = sessionStorage.getItem("visitorJourney");
+    const visitorId = localStorage.getItem("visitorId");
+    const visitCount = localStorage.getItem("visitorVisitCount");
+
+    if (!journey || !visitorId) return;
+
+    // Send only when the journey has changed.
+    if (sessionStorage.getItem("visitorJourneySent") === journey) {
+        return;
+    }
+
+    sendPushbird(
+        "Visitor activity",
+        `${visitorId} - Visit #${visitCount} - ${journey}`
+    );
+
+    sessionStorage.setItem("visitorJourneySent", journey);
+}
+
+function sendVisitorLeft() {
+    if (sessionStorage.getItem("visitorLeftNotificationSent")) return;
+
+    const journey = sessionStorage.getItem("visitorJourney");
+    const visitorId = localStorage.getItem("visitorId");
+    const visitCount = localStorage.getItem("visitorVisitCount");
+
+    if (!journey || !visitorId) return;
+
+    sendPushbird(
+        "Visitor left",
+        `${visitorId} - Visit #${visitCount} - ${journey} - Left`
+    );
+
+    sessionStorage.setItem("visitorLeftNotificationSent", "1");
+}
+
+function notifyVisitor() {
+    if (sessionStorage.getItem("visitorNotificationSent")) return;
+
+    // Create an anonymous browser ID.
+    let visitorId = localStorage.getItem("visitorId");
+
+    if (!visitorId) {
+        visitorId = Math.random()
+            .toString(36)
+            .substring(2, 7)
+            .toUpperCase();
+
+        localStorage.setItem("visitorId", visitorId);
+    }
+
+    // Count visits from this browser.
+    let visitCount = parseInt(
+        localStorage.getItem("visitorVisitCount") || "0",
+        10
+    );
+
+    visitCount++;
+
+    localStorage.setItem("visitorVisitCount", visitCount);
+
+    const isReturning = visitCount > 1;
+    const referrer = document.referrer;
+
+    let source = "Direct";
+
+    if (referrer) {
+        try {
+            const host = new URL(referrer).hostname.toLowerCase();
+
+            if (host.includes("reddit")) source = "Reddit";
+            else if (host.includes("google")) source = "Google";
+            else if (host.includes("instagram")) source = "Instagram";
+            else if (host.includes("facebook")) source = "Facebook";
+            else if (host.includes("pinterest")) source = "Pinterest";
+            else if (host.includes("bing")) source = "Bing";
+            else source = host.replace("www.", "");
+        } catch {}
+    }
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    let device = "Desktop";
+
+    if (ua.includes("iphone")) device = "iPhone";
+    else if (ua.includes("ipad")) device = "iPad";
+    else if (ua.includes("android")) device = "Android";
+    else if (ua.includes("mac")) device = "Mac";
+    else if (ua.includes("windows")) device = "Windows";
+
+    // Start a fresh journey for this visit.
+    sessionStorage.setItem("visitorJourney", "Gallery");
+    sessionStorage.removeItem("visitorJourneySent");
+    sessionStorage.removeItem("visitorLeftNotificationSent");
+
+    const title = isReturning ? "Returning visitor" : "New visitor";
+
+    const message =
+        `${isReturning ? "Returning" : "New"} visitor - ` +
+        `${visitorId} - Visit #${visitCount} - ` +
+        `${source} - ${device} - Gallery`;
+
+    sendPushbird(title, message);
+
+    sessionStorage.setItem("visitorNotificationSent", "1");
+}
+
+/* ============================================================
+   TRACK ENQUIRIES, NAVIGATION AND MAILING LIST
+============================================================ */
+
+document.addEventListener("click", event => {
+    const target = event.target;
+
+    if (!(target instanceof Element)) return;
+
+    // Track WhatsApp, Instagram and email enquiries,
+    // both under paintings and inside the popup.
+    const enquiryLink = target.closest(
+        ".enquiry-link, .whatsapp-link, .instagram-link, .email-link"
+    );
+
+    if (enquiryLink) {
+        const card = enquiryLink.closest(".painting-card");
+
+        const title =
+            card?.querySelector(".painting-title")?.textContent?.trim() ||
+            modalTitle?.textContent?.trim() ||
+            "Painting";
+
+        let channel = "Enquiry";
+
+        if (enquiryLink.classList.contains("whatsapp-link")) {
+            channel = "WhatsApp";
+        } else if (enquiryLink.classList.contains("instagram-link")) {
+            channel = "Instagram";
+        } else if (enquiryLink.classList.contains("email-link")) {
+            channel = "Email";
+        }
+
+        trackJourney(`${channel}: ${title}`);
+        return;
+    }
+
+    // Track navigation through page sections.
+    const anchor = target.closest('a[href^="#"]');
+
+    if (anchor) {
+        const section = anchor.getAttribute("href").slice(1);
+
+        if (section) {
+            trackJourney(`Navigation: ${section}`);
+        }
+    }
+
+    // Track the mailing-list button.
+    if (target.closest("#newsletterButton")) {
+        trackJourney("Mailing list");
+    }
+});
+
+/* ============================================================
+   PERIODIC JOURNEY UPDATES
+============================================================ */
+
+// Send changed activity every 30 seconds.
+setInterval(sendJourneyUpdate, 30000);
+
+/* ============================================================
+   VISITOR EXIT
+============================================================ */
+
+// Try to send the final journey when the page is left.
+// Browsers may not always complete a request during page exit.
+window.addEventListener("pagehide", sendVisitorLeft);
+
+/* ============================================================
    CURRENT YEAR AND INITIAL DISPLAY
 ============================================================ */
 
@@ -398,6 +615,6 @@ if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
 }
 
-// Pushbird code remains blank in index.html until configured.
-
+// Render the paintings and start visitor tracking.
 renderPaintings();
+notifyVisitor();
