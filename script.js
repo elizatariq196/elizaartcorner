@@ -59,9 +59,84 @@ const SITE = {
 const paintings = [
 
     {
+        title: "A Little Further",
+
+        image: "a-little-further.jpg",
+
+        size: "18 × 24 in",
+
+        price: "$420",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+    {
+        title: "The Long Evening",
+
+        image: "the-long-evening.jpg",
+
+        size: "18 × 24 in",
+
+        price: "$380",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+   
+    {
         title: "The Man Outside",
 
         image: "the-man-outside.jpg",
+
+        size: "12 × 12 in",
+
+        price: "$120",
+
+        status: "Available",
+
+        description:
+            ""
+    },
+
+    {
+        title: "The Last Refuge",
+
+        image: "the-last-refuge.jpg",
+
+        size: "18 × 24 in",
+
+        price: "$300",
+
+        status: "Sold",
+
+        description:
+            ""
+    },
+   
+   {
+        title: "The Quiet House",
+
+        image: "the.quiet.house.jpg",
+
+        size: "12 × 12 in",
+
+        price: "$120",
+
+        status: "Sold",
+
+        description:
+            ""
+    },
+
+     {
+        title: "Still Awake",
+
+        image: "still-awake.jpg",
 
         size: "12 × 12 in",
 
@@ -84,70 +159,6 @@ const paintings = [
         price: "$100",
 
         status: "Available",
-
-        description:
-            ""
-    },
-
-
-    {
-        title: "A Little Further",
-
-        image: "a-little-further,jpg",
-
-        size: "18 × 24 in",
-
-        price: "$420",
-
-        status: "Available",
-
-        description:
-            ""
-    },
-
-
-    {
-        title: "The Long Evening",
-
-        image: "the-long-evening.jpg",
-
-        size: "18 × 24 in",
-
-        price: "$380",
-
-        status: "Available",
-
-        description:
-            ""
-    },
-
-
-    {
-        title: "Still Awake",
-
-        image: "still-awake.jpg",
-
-        size: "12 × 12 in",
-
-        price: "$120",
-
-        status: "Available",
-
-        description:
-            ""
-    },
-
-
-    {
-        title: "The Last Refuge",
-
-        image: "the-last-refuge.jpg",
-
-        size: "18 × 24 in",
-
-        price: "$300",
-
-        status: "Sold",
 
         description:
             ""
