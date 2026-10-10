@@ -7,7 +7,7 @@ const SITE = {
     whatsapp: "923074067716",
     email: "elizatariq196@gmail.com",
     instagramUrl: "https://www.instagram.com/elizaartcorner",
-    kitUrl: "https://eliza-art-corner.kit.com/3f972b5497"
+    beehiivUrl: "https://eliza-art-corner.kit.com/3f972b5497"
 };
 
 /* ============================================================
