@@ -1,627 +1,403 @@
 /* ============================================================
    ELIZA ART CORNER
-   Main JavaScript
-============================================================ */
-
-
-/* ============================================================
-   WEBSITE INFORMATION
-   ============================================================
-
-   EDIT THESE when the website is ready.
-
 ============================================================ */
 
 const SITE = {
-
     name: "Eliza Art Corner",
-
-    email: "",
-
-    instagram: "@elizaartcorner",
-
-    instagramUrl: "",
-
+    whatsapp: "923074067716",
+    email: "elizatariq196@gmail.com",
+    instagramUrl: "https://www.instagram.com/elizaartcorner",
     beehiivUrl: ""
-
 };
-
 
 /* ============================================================
    PAINTINGS
-   ============================================================
-
-   THIS IS THE MAIN AREA YOU WILL EDIT.
-
-   For every new painting, copy one of these blocks.
-
-   IMPORTANT:
-   The image filename must exactly match the file uploaded
-   to the main GitHub repository.
-
-   Example:
-
-   image: "the-man-out.JPG"
-
-   If the uploaded file is called:
-
-   The-Man-Out.JPG
-
-   then the code must say:
-
-   image: "The-Man-Out.JPG"
-
-   Capital letters matter on some servers.
-
+   Upload every painting image directly to the main repository.
+   Filenames here must match the uploaded files exactly.
 ============================================================ */
-
 
 const paintings = [
-
     {
         title: "A Little Further",
-
         image: "a-little-further.jpg",
-
         size: "18 × 24 in",
-
+        medium: "Acrylic",
         price: "$420",
-
-        status: "Available",
-
-        description:
-            ""
+        status: "Available"
     },
-
     {
         title: "The Long Evening",
-
         image: "the-long-evening.jpg",
-
         size: "18 × 24 in",
-
+        medium: "Acrylic",
         price: "$380",
-
-        status: "Available",
-
-        description:
-            ""
+        status: "Available"
     },
-   
     {
         title: "The Man Outside",
-
         image: "the-man-outside.jpg",
-
         size: "12 × 12 in",
-
+        medium: "Acrylic",
         price: "$120",
-
-        status: "Available",
-
-        description:
-            ""
+        status: "Available"
     },
-
     {
         title: "The Last Refuge",
-
         image: "the-last-refuge.jpg",
-
         size: "18 × 24 in",
-
+        medium: "Acrylic",
         price: "$300",
-
-        status: "Sold",
-
-        description:
-            ""
+        status: "Sold"
     },
-   
-   {
+    {
         title: "The Quiet House",
-
         image: "the.quiet.house.jpg",
-
         size: "12 × 12 in",
-
+        medium: "Acrylic",
         price: "$120",
-
-        status: "Sold",
-
-        description:
-            ""
+        status: "Sold"
     },
-
-     {
+    {
         title: "Still Awake",
-
         image: "still-awake.jpg",
-
         size: "12 × 12 in",
-
+        medium: "Acrylic",
         price: "$120",
-
-        status: "Available",
-
-        description:
-            ""
+        status: "Available"
     },
-
-
     {
         title: "Long Way Back",
-
         image: "long-way-back.jpg",
-
         size: "8 × 8 in",
-
+        medium: "Acrylic",
         price: "$100",
-
-        status: "Available",
-
-        description:
-            ""
+        status: "Available"
     }
-
 ];
 
-
 /* ============================================================
-   DOM ELEMENTS
+   ELEMENTS
 ============================================================ */
 
-const paintingsGrid =
-    document.getElementById("paintingsGrid");
-
-const paintingModal =
-    document.getElementById("paintingModal");
-
-const modalOverlay =
-    document.getElementById("modalOverlay");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-const modalImage =
-    document.getElementById("modalImage");
-
-const modalTitle =
-    document.getElementById("modalTitle");
-
-const modalDescription =
-    document.getElementById("modalDescription");
-
-const modalSize =
-    document.getElementById("modalSize");
-
-const modalPrice =
-    document.getElementById("modalPrice");
-
-const modalStatus =
-    document.getElementById("modalStatus");
-
-const modalContact =
-    document.getElementById("modalContact");
-
+const paintingsGrid = document.getElementById("paintingsGrid");
+const paintingModal = document.getElementById("paintingModal");
+const modalOverlay = document.getElementById("modalOverlay");
+const modalClose = document.getElementById("modalClose");
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+const modalSize = document.getElementById("modalSize");
+const modalMedium = document.getElementById("modalMedium");
+const modalPrice = document.getElementById("modalPrice");
+const modalStatus = document.getElementById("modalStatus");
+const modalContactLinks = document.getElementById("modalContactLinks");
 
 /* ============================================================
-   RENDER PAINTINGS
+   CONTACT LINKS
+============================================================ */
+
+function whatsappUrl(painting) {
+    let message;
+
+    if (painting.status.toLowerCase() === "sold") {
+        message = `Hi Eliza! I'm interested in "${painting.title}". I saw that this painting has been sold, but I'd love to know if you could recreate it for me. Could you please share the details?`;
+    } else {
+        message = `Hi Eliza! I'm interested in the painting "${painting.title}". Could you please share more details?`;
+    }
+
+    return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+function emailUrl(painting) {
+    let subject;
+    let body;
+
+    if (painting.status.toLowerCase() === "sold") {
+        subject = `Commission enquiry: ${painting.title}`;
+        body = `Hi Eliza,
+
+I'm interested in your painting "${painting.title}". I noticed it has been sold, but I'd love to know if you would be open to recreating it for me.
+
+Could you please share the details?
+
+Thank you!`;
+    } else {
+        subject = `Enquiry about ${painting.title}`;
+        body = `Hi Eliza,
+
+I'm interested in the painting "${painting.title}". Could you please share more details?
+
+Thank you!`;
+    }
+
+    return `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function contactLinksMarkup(painting) {
+    return `
+        <div class="painting-enquiry">
+            <p class="enquiry-label">Enquire about this painting</p>
+            <div class="enquiry-links">
+                <a
+                    class="enquiry-link whatsapp-link"
+                    href="${whatsappUrl(painting)}"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Ask about ${painting.title} on WhatsApp"
+                >WhatsApp</a>
+
+                <a
+                    class="enquiry-link instagram-link"
+                    href="${SITE.instagramUrl}"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Contact Eliza about ${painting.title} on Instagram"
+                >Instagram</a>
+
+                <a
+                    class="enquiry-link email-link"
+                    href="${emailUrl(painting)}"
+                    aria-label="Email about ${painting.title}"
+                >Email</a>
+            </div>
+        </div>
+    `;
+}
+
+/* ============================================================
+   DISPLAY PAINTINGS
 ============================================================ */
 
 function renderPaintings() {
-
-    if (!paintingsGrid) {
-        return;
-    }
-
+    if (!paintingsGrid) return;
 
     paintingsGrid.innerHTML = "";
 
-
     paintings.forEach((painting, index) => {
-
-        const card =
-            document.createElement("article");
-
+        const card = document.createElement("article");
         card.className = "painting-card";
 
-
-        const statusClass =
-            painting.status.toLowerCase() === "sold"
-                ? "sold"
-                : "";
-
+        const isSold = painting.status.toLowerCase() === "sold";
+        const statusClass = isSold ? "sold" : "";
 
         card.innerHTML = `
-
-            <div class="painting-image-wrap">
-
+            <div
+                class="painting-image-wrap"
+                data-open-painting="${index}"
+                role="button"
+                tabindex="0"
+                aria-label="View details for ${painting.title}"
+            >
                 <img
                     src="${painting.image}"
                     alt="${painting.title}"
                     class="painting-image"
                     loading="lazy"
-                    onerror="this.style.display='none'; this.parentElement.classList.add('image-placeholder');"
                 >
-
                 <div class="painting-overlay">
                     <span>View Painting</span>
                 </div>
-
             </div>
-
 
             <div class="painting-meta">
-
                 <div>
-
-                    <h3 class="painting-title">
-                        ${painting.title}
-                    </h3>
-
-                    <p class="painting-size">
-                        ${painting.size}
-                    </p>
-
-                    <p class="painting-status ${statusClass}">
-                        ${painting.status}
-                    </p>
-
+                    <h3 class="painting-title">${painting.title}</h3>
+                    <p class="painting-size">${painting.size}</p>
+                    <p class="painting-medium">${painting.medium}</p>
+                    <p class="painting-status ${statusClass}">${painting.status}</p>
                 </div>
 
-
-                <div class="painting-price">
-                    ${painting.price}
-                </div>
-
+                <div class="painting-price">${painting.price}</div>
             </div>
+
+            ${contactLinksMarkup(painting)}
         `;
 
+        const image = card.querySelector(".painting-image");
 
-        card.addEventListener("click", () => {
-
-            openPainting(index);
-
+        image.addEventListener("error", () => {
+            image.style.display = "none";
+            image.parentElement.classList.add("image-placeholder");
         });
 
+        const imageWrap = card.querySelector(".painting-image-wrap");
+
+        imageWrap.addEventListener("click", () => {
+            openPainting(index);
+        });
+
+        imageWrap.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openPainting(index);
+            }
+        });
+
+        // Keep enquiry links separate from the painting popup.
+        card.querySelectorAll(".enquiry-link").forEach(link => {
+            link.addEventListener("click", event => {
+                event.stopPropagation();
+            });
+        });
 
         paintingsGrid.appendChild(card);
-
     });
-
 }
 
-
 /* ============================================================
-   OPEN PAINTING MODAL
+   PAINTING POPUP
 ============================================================ */
 
 function openPainting(index) {
+    const painting = paintings[index];
 
-    const painting =
-        paintings[index];
+    if (!painting || !paintingModal) return;
 
+    const isSold = painting.status.toLowerCase() === "sold";
 
-    if (!painting) {
-        return;
-    }
+    modalImage.style.visibility = "visible";
+    modalImage.src = painting.image;
+    modalImage.alt = painting.title;
 
+    modalImage.onerror = () => {
+        modalImage.style.visibility = "hidden";
+        modalImage.parentElement.classList.add("image-placeholder");
+    };
 
-    modalImage.src =
-        painting.image;
+    modalImage.onload = () => {
+        modalImage.style.visibility = "visible";
+        modalImage.parentElement.classList.remove("image-placeholder");
+    };
 
-    modalImage.alt =
-        painting.title;
+    modalTitle.textContent = painting.title;
+    modalSize.textContent = painting.size;
+    modalMedium.textContent = painting.medium;
+    modalPrice.textContent = painting.price;
 
+    // Sold paintings can still be requested as commissions.
+    modalStatus.textContent = isSold
+        ? "Open for commission"
+        : "Available";
 
-    modalTitle.textContent =
-        painting.title;
+    const whatsappLink = modalContactLinks.querySelector(".whatsapp-link");
+    const instagramLink = modalContactLinks.querySelector(".instagram-link");
+    const emailLink = modalContactLinks.querySelector(".email-link");
 
-
-    modalDescription.textContent =
-        painting.description;
-
-
-    modalSize.textContent =
-        painting.size;
-
-
-    modalPrice.textContent =
-        painting.price;
-
-
-    modalStatus.textContent =
-        painting.status;
-
-
-    /*
-        If the painting is sold, change the enquiry button.
-    */
-
-    if (
-        painting.status.toLowerCase() === "sold"
-    ) {
-
-        modalContact.textContent =
-            "Ask About a Similar Painting";
-
-    } else {
-
-        modalContact.textContent =
-            "Enquire About This Painting";
-
-    }
-
+    whatsappLink.href = whatsappUrl(painting);
+    instagramLink.href = SITE.instagramUrl;
+    emailLink.href = emailUrl(painting);
 
     paintingModal.classList.add("active");
-
-    paintingModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
-
+    paintingModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
 }
-
-
-/* ============================================================
-   CLOSE PAINTING MODAL
-============================================================ */
 
 function closePainting() {
+    if (!paintingModal) return;
 
-    paintingModal.classList.remove(
-        "active"
-    );
-
-
-    paintingModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    document.body.style.overflow =
-        "";
+    paintingModal.classList.remove("active");
+    paintingModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
 }
 
+if (modalClose) {
+    modalClose.addEventListener("click", closePainting);
+}
 
-modalClose.addEventListener(
-    "click",
-    closePainting
-);
+if (modalOverlay) {
+    modalOverlay.addEventListener("click", closePainting);
+}
 
-
-modalOverlay.addEventListener(
-    "click",
-    closePainting
-);
-
-
-/* ESC KEY */
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key === "Escape" &&
-            paintingModal.classList.contains("active")
-        ) {
-
-            closePainting();
-
-        }
-
+document.addEventListener("keydown", event => {
+    if (
+        event.key === "Escape" &&
+        paintingModal?.classList.contains("active")
+    ) {
+        closePainting();
     }
-);
-
+});
 
 /* ============================================================
-   MOBILE MENU
+   MOBILE NAVIGATION
 ============================================================ */
 
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const siteNav =
-    document.getElementById("siteNav");
-
+const menuToggle = document.getElementById("menuToggle");
+const siteNav = document.getElementById("siteNav");
 
 if (menuToggle && siteNav) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("active");
 
-    menuToggle.addEventListener(
-        "click",
-        () => {
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
-            const isOpen =
-                siteNav.classList.toggle("active");
-
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen
-            );
-
-        }
-    );
-
-
-    /*
-        Close the menu after clicking a link.
-    */
-
-    siteNav
-        .querySelectorAll("a")
-        .forEach((link) => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    siteNav.classList.remove(
-                        "active"
-                    );
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-            );
-
+    siteNav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            siteNav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
         });
-
+    });
 }
-
 
 /* ============================================================
    CONTACT INFORMATION
 ============================================================ */
 
-const emailLink =
-    document.getElementById("emailLink");
+const emailLink = document.getElementById("emailLink");
+const emailText = document.getElementById("emailText");
 
-const emailText =
-    document.getElementById("emailText");
-
-
-if (SITE.email) {
-
-    emailLink.href =
-        `mailto:${SITE.email}`;
-
-    emailText.textContent =
-        SITE.email;
-
-} else {
-
-    /*
-        Email hasn't been entered yet.
-    */
-
-    emailLink.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-        }
-    );
-
+if (emailLink) {
+    emailLink.href = `mailto:${SITE.email}`;
 }
 
+if (emailText) {
+    emailText.textContent = SITE.email;
+}
+
+const instagramLink = document.getElementById("instagramLink");
+
+if (instagramLink) {
+    instagramLink.href = SITE.instagramUrl;
+}
+
+const contactWhatsApp = document.getElementById("contactWhatsApp");
+
+if (contactWhatsApp) {
+    const message = "Hi Eliza! I'd like to enquire about your paintings.";
+
+    contactWhatsApp.href =
+        `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
+}
 
 /* ============================================================
-   INSTAGRAM
+   NEWSLETTER
+   Add Eliza's Beehiiv signup URL when available.
 ============================================================ */
 
-const instagramLink =
-    document.getElementById(
-        "instagramLink"
-    );
+const newsletterButton = document.getElementById("newsletterButton");
 
-
-if (SITE.instagramUrl) {
-
-    instagramLink.href =
-        SITE.instagramUrl;
-
-}
-
-
-if (SITE.instagram) {
-
-    const instagramText =
-        instagramLink.querySelector(
-            "strong"
-        );
-
-    if (instagramText) {
-
-        instagramText.textContent =
-            SITE.instagram;
-
+if (newsletterButton) {
+    if (SITE.beehiivUrl) {
+        newsletterButton.href = SITE.beehiivUrl;
+        newsletterButton.target = "_blank";
+        newsletterButton.rel = "noopener";
+    } else {
+        newsletterButton.addEventListener("click", event => {
+            event.preventDefault();
+            alert("The mailing list will be available soon.");
+        });
     }
-
 }
 
-
 /* ============================================================
-   BEEHIIV
+   CURRENT YEAR AND INITIAL DISPLAY
 ============================================================ */
 
-const newsletterButton =
-    document.getElementById(
-        "newsletterButton"
-    );
-
-
-if (SITE.beehiivUrl) {
-
-    newsletterButton.href =
-        SITE.beehiivUrl;
-
-} else {
-
-    newsletterButton.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            alert(
-                "The mailing list will be available soon."
-            );
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   CURRENT YEAR
-============================================================ */
-
-const currentYear =
-    document.getElementById(
-        "currentYear"
-    );
-
+const currentYear = document.getElementById("currentYear");
 
 if (currentYear) {
-
-    currentYear.textContent =
-        new Date().getFullYear();
-
+    currentYear.textContent = new Date().getFullYear();
 }
 
-
-/* ============================================================
-   PUSHBIRD
-   ============================================================
-
-   The Pushbird code is intentionally kept BLANK in index.html.
-
-   When you are ready:
-
-   1. Copy the Pushbird initialization code from Ramsha's site.
-   2. Paste it into the PUSHBIRD CODE section in index.html.
-   3. Replace it with Eliza's Pushbird credentials/settings.
-
-   Nothing else in this JavaScript needs to change.
-
-============================================================ */
-
-
-/* ============================================================
-   START WEBSITE
-============================================================ */
+// Pushbird code remains blank in index.html until configured.
 
 renderPaintings();
